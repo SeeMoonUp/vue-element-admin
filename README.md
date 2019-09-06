@@ -26,8 +26,6 @@
   </a>
 </p>
 
-lemon test
-
 English | [简体中文](./README.zh-CN.md) | [日本語](./README.ja.md) | [Spanish](./README.es.md)
 
 ## Introduction
