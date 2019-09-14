@@ -4,6 +4,6 @@ export function getToken() {
   return request({
     url: 'qiniu/getToken', // 假地址 自行替换
     method: 'post',
-    baseURL: 'https://dh.javalemon.com/'
+    baseURL: 'https://bit-admin.javalemon.com/'
   })
 }
