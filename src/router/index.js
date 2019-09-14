@@ -84,6 +84,37 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/list',
+    name: 'Example',
+    meta: {
+      title: '每周精选',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/weekhot/create'),
+        name: 'CreateArticle',
+        meta: { title: '创建精选', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/weekhot/edit'),
+        name: 'EditArticle',
+        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/weekhot/list'),
+        name: 'ArticleList',
+        meta: { title: '精选列表', icon: 'list' }
+      }
+    ]
+  },
+  {
     path: '/documentation',
     component: Layout,
     children: [

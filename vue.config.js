@@ -47,6 +47,7 @@ module.exports = {
         }
       }
     },
+    disableHostCheck: true,
     after: require('./mock/mock-server.js')
   },
   configureWebpack: {
