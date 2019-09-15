@@ -3,7 +3,7 @@
     <el-upload
       :data="dataObj"
       class="upload-demo"
-      action="http://pxfwvtdd1.bkt.clouddn.com"
+      action="https://upload-z1.qiniup.com"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-upload="beforeUpload"
@@ -21,7 +21,7 @@ export default {
   name: 'UploadFile',
   data() {
     return {
-      dataObj: { token: '', key: '' },
+      dataObj: { upload_token: '', resource_key: '' },
       tempUrl: '',
       fileList: [{ name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }]
     }
@@ -49,8 +49,8 @@ export default {
           const token = response.data.token
           console.log('key' + key)
           console.log('token' + token)
-          _self._data.dataObj.token = token
-          _self._data.dataObj.key = key
+          _self._data.dataObj.upload_token = token
+          _self._data.dataObj.resource_key = key
           this.tempUrl = response.data.qiniu_url
           resolve(true)
         }).catch(err => {
