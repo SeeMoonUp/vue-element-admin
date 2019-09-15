@@ -38,7 +38,8 @@ export default {
     },
     beforeUpload() {
       console.log('上传之前')
-
+      console.log(getToken())
+      console.log(getToken().data)
       const _self = this
       return new Promise((resolve, reject) => {
         getToken().then(response => {

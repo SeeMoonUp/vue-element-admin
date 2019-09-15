@@ -59,8 +59,6 @@ export default {
     },
     beforeUpload() {
       const _self = this
-      console.log(getToken())
-      console.log(getToken().data)
       return new Promise((resolve, reject) => {
         getToken().then(response => {
           const key = response.data.qiniu_key
