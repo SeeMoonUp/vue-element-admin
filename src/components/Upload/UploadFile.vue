@@ -43,6 +43,7 @@ export default {
       return new Promise((resolve, reject) => {
         getToken().then(response => {
           console.log(response)
+          console.log(response.data)
           const key = response.data.key
           const token = response.data.token
           console.log('key' + key)
