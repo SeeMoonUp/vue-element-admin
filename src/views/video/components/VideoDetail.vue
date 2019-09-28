@@ -144,7 +144,7 @@ export default {
       this.$refs.postForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.postForm.qiniuKey = this.$ref.upload.tempUrl
+          this.postForm.qiniuKey = this.$refs.upload.tempUrl
           save(this.postForm).then(response => {
             console.log(response)
             this.$notify({
