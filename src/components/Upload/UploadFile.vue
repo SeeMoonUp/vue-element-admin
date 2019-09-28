@@ -7,11 +7,12 @@
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-upload="beforeUpload"
+      :on-success="uploadSuccess"
       :file-list="fileList"
       list-type="picture"
     >
       <el-button size="small" type="primary">点击上传</el-button>
-      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      <div slot="tip" class="el-upload__tip">上传文件，目前文件大小未做限制</div>
     </el-upload>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
       actionPath: 'https://upload-z1.qiniup.com',
       dataObj: { token: '', key: '' },
       tempUrl: '',
-      fileList: [{ name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }, { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }]
+      fileList: []
     }
   },
   methods: {
@@ -52,12 +53,20 @@ export default {
           console.log('token' + token)
           _self._data.dataObj.token = token
           _self._data.dataObj.key = key
-          this.tempUrl = response.data.qiniu_url
+          this.tempUrl = 'http://pxfwvtdd1.bkt.clouddn.com/' + key
           resolve(true)
         }).catch(err => {
           console.log(err)
           reject(false)
         })
+      })
+    },
+    uploadSuccess(response, file, fileList) {
+      const _self = this
+      console.log(_self)
+      this.$message({
+        message: '文件上传成功',
+        type: 'success'
       })
     },
     beforeRemove(file, fileList) {

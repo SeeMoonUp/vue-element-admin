@@ -115,6 +115,37 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/video',
+    component: Layout,
+    redirect: '/video/list',
+    name: 'video',
+    meta: {
+      title: '视频库',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/video/create'),
+        name: 'CreateVideo',
+        meta: { title: '上传视频', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/video/edit'),
+        name: 'EditArticle',
+        meta: { title: 'Edit Video', noCache: true, activeMenu: '/video/list' },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/video/list'),
+        name: 'ArticleList',
+        meta: { title: '视频列表', icon: 'list' }
+      }
+    ]
+  },
+  {
     path: '/documentation',
     component: Layout,
     children: [
