@@ -53,7 +53,7 @@ export default {
           console.log('token' + token)
           _self._data.dataObj.token = token
           _self._data.dataObj.key = key
-          this.tempUrl = 'http://pxfwvtdd1.bkt.clouddn.com/' + key
+          this.tempUrl = key
           resolve(true)
         }).catch(err => {
           console.log(err)

@@ -23,7 +23,7 @@
         </el-row>
 
         <el-form-item label="视频:" prop="image_uri" style="margin-bottom: 30px;">
-          <Upload v-model="postForm.image_uri" />
+          <Upload ref="upload" v-model="postForm.image_uri" />
           <el-button v-loading="loading" style="margin-left: 10px;" type="success" @href="submitForm">
             查看视频
           </el-button>
@@ -46,7 +46,8 @@ import Warning from './Warning'
 const defaultForm = {
   status: 'draft',
   title: '', // 文章题目
-  id: undefined
+  id: undefined,
+  qiniuKey: ''
 }
 
 export default {
@@ -139,9 +140,11 @@ export default {
     },
     submitForm() {
       console.log(this.postForm)
+      console.log(this.actionPath)
       this.$refs.postForm.validate(valid => {
         if (valid) {
           this.loading = true
+          this.postForm.qiniuKey = this.$ref.upload.tempUrl
           save(this.postForm).then(response => {
             console.log(response)
             this.$notify({
