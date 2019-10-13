@@ -5,7 +5,6 @@ export function save(query) {
     url: 'video/save',
     method: 'post',
     baseURL: 'https://bit-admin.javalemon.com/',
-    params: query,
     data: query
   })
 }
