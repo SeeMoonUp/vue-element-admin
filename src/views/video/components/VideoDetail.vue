@@ -150,6 +150,7 @@ export default {
               message: '请等待视频上传完成哦',
               type: 'warning'
             })
+            this.loading = false
             return false
           }
           save(this.postForm).then(response => {
