@@ -7,13 +7,7 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column width="180px" align="center" label="Date">-->
-      <!--<template slot-scope="scope">-->
-      <!--<span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-
-      <el-table-column width="120px" align="center" label="qiniuKey">
+      <el-table-column width="200px" align="center" label="qiniuKey">
         <template slot-scope="scope">
           <span>{{ scope.row.qiniuKey }}</span>
         </template>
@@ -41,11 +35,22 @@
         </template>
       </el-table-column>
 
+      <el-table-column width="180px" align="center" label="Date">
+        <template slot-scope="scope">
+          <span>{{ scope.row.createTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
+          <a :href="'http://bit-img.javalemon.com/'+scope.row.qiniuKey">
+            <el-button type="primary" size="small" icon="el-icon-view">
+              观看
+            </el-button>
+          </a>
           <router-link :to="'/example/edit/'+scope.row.id">
             <el-button type="primary" size="small" icon="el-icon-edit">
-              Edit
+              编辑
             </el-button>
           </router-link>
         </template>
