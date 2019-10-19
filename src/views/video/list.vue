@@ -7,7 +7,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="200px" label="Title">
+      <el-table-column width="200px" label="Title">
         <template slot-scope="{row}">
           <router-link :to="'/example/edit/'+row.id" class="link-type">
             <span>{{ row.title }}</span>
@@ -43,7 +43,7 @@
 
       <el-table-column align="center" label="Actions" width="150px">
         <template slot-scope="scope">
-          <a :href="'http://bit-img.javalemon.com/'+scope.row.qiniuKey">
+          <a :href="'http://bit-img.javalemon.com/'+scope.row.qiniuKey" target="_blank">
             <el-button type="primary" size="small" icon="el-icon-view">
               观看
             </el-button>
