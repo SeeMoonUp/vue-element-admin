@@ -7,7 +7,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="200" label="Title">
+      <el-table-column width="200" min-width="100" label="Title">
         <template slot-scope="{row}">
           <router-link :to="'/example/edit/'+row.id" class="link-type">
             <span>{{ row.title }}</span>
