@@ -16,3 +16,10 @@ export function list() {
   })
 }
 
+export function fetchList(query) {
+  return request({
+    url: 'video/list',
+    method: 'post',
+    baseURL: 'https://bit-admin.javalemon.com/'
+  })
+}
