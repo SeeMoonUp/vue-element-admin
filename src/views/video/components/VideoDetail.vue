@@ -24,9 +24,9 @@
 
         <el-form-item label="视频:" prop="image_uri" style="margin-bottom: 30px;">
           <Upload ref="upload" v-model="postForm.image_uri" />
-          <el-button v-loading="loading" style="margin-left: 10px;" type="success" @href="submitForm">
-            查看视频
-          </el-button>
+          <!--<el-button v-loading="loading" style="margin-left: 10px;" type="success" @href="submitForm">-->
+          <!--查看视频-->
+          <!--</el-button>-->
         </el-form-item>
 
       </div>
@@ -145,6 +145,13 @@ export default {
         if (valid) {
           this.loading = true
           this.postForm.qiniuKey = this.$refs.upload.tempUrl
+          if (!this.$refs.upload.success) {
+            this.$message({
+              message: '请等待视频上传完成哦',
+              type: 'warning'
+            })
+            return false
+          }
           save(this.postForm).then(response => {
             console.log(response)
             this.$notify({
