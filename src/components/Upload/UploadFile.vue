@@ -25,6 +25,7 @@ export default {
       actionPath: 'https://upload-z1.qiniup.com',
       dataObj: { token: '', key: '' },
       tempUrl: '',
+      success: false,
       fileList: []
     }
   },
@@ -54,6 +55,7 @@ export default {
           _self._data.dataObj.token = token
           _self._data.dataObj.key = key
           this.tempUrl = key
+          this.success = true
           resolve(true)
         }).catch(err => {
           console.log(err)
