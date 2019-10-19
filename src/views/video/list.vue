@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="ID" width="80">
+      <el-table-column align="center" label="ID">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="400" min-width="300" label="Title">
+      <el-table-column min-width="300" label="Title">
         <template slot-scope="{row}">
           <router-link :to="'/example/edit/'+row.id" class="link-type">
             <span>{{ row.title }}</span>
@@ -15,7 +15,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="400" align="center" label="qiniuKey">
+      <el-table-column align="center" label="qiniuKey">
         <template slot-scope="scope">
           <span>{{ scope.row.qiniuKey }}</span>
         </template>
@@ -35,13 +35,13 @@
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column width="270" align="center" label="Date">
+      <el-table-column align="center" label="Date">
         <template slot-scope="scope">
           <span>{{ scope.row.createTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="Actions" width="270">
+      <el-table-column align="center" label="Actions">
         <template slot-scope="scope">
           <a :href="'http://bit-img.javalemon.com/'+scope.row.qiniuKey" target="_blank">
             <el-button type="primary" size="small" icon="el-icon-view">
