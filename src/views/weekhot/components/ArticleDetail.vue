@@ -63,7 +63,7 @@
           <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
         </el-form-item>
 
-        <el-form-item label-width="60px" label="视频库选择:" class="postInfo-container-item">
+        <el-form-item label-width="100px" label="视频库选择:" class="postInfo-container-item">
           <el-select v-model="postForm.videoId" :remote-method="getVideoList" filterable default-first-option remote placeholder="Search Video">
             <el-option v-for="(item,index) in videoList" :key="item+index" :label="item.title" :value="item.id" />
           </el-select>
@@ -253,7 +253,7 @@ export default {
       })
     },
     getVideoList(query) {
-      searchList(this.listQuery).then(response => {
+      searchList(query).then(response => {
         if (response.code !== 0) {
           return
         }
