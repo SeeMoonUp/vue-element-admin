@@ -23,3 +23,12 @@ export function fetchList(query) {
     baseURL: 'https://bit-admin.javalemon.com/'
   })
 }
+
+export function searchList(query) {
+  return request({
+    url: 'video/searchList',
+    method: 'post',
+    data: query,
+    baseURL: 'https://bit-admin.javalemon.com/'
+  })
+}

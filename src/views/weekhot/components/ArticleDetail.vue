@@ -21,14 +21,14 @@
           <el-col :span="24">
             <el-form-item style="margin-bottom: 40px;" prop="title">
               <MDinput v-model="postForm.title" :maxlength="100" name="name" required>
-                Title
+                标题
               </MDinput>
             </el-form-item>
 
             <div class="postInfo-container">
               <el-row>
                 <el-col :span="8">
-                  <el-form-item label-width="60px" label="Author:" class="postInfo-container-item">
+                  <el-form-item label-width="60px" label="作者:" class="postInfo-container-item">
                     <el-select v-model="postForm.author" :remote-method="getRemoteUserList" filterable default-first-option remote placeholder="Search user">
                       <el-option v-for="(item,index) in userListOptions" :key="item+index" :label="item" :value="item" />
                     </el-select>
@@ -36,13 +36,13 @@
                 </el-col>
 
                 <el-col :span="10">
-                  <el-form-item label-width="120px" label="Publish Time:" class="postInfo-container-item">
+                  <el-form-item label-width="120px" label="发布时间:" class="postInfo-container-item">
                     <el-date-picker v-model="displayTime" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="Select date and time" />
                   </el-form-item>
                 </el-col>
 
                 <el-col :span="6">
-                  <el-form-item label-width="90px" label="Importance:" class="postInfo-container-item">
+                  <el-form-item label-width="90px" label="星级:" class="postInfo-container-item">
                     <el-rate
                       v-model="postForm.importance"
                       :max="3"
@@ -58,13 +58,15 @@
           </el-col>
         </el-row>
 
-        <el-form-item style="margin-bottom: 40px;" label-width="70px" label="Summary:">
+        <el-form-item style="margin-bottom: 40px;" label-width="70px" label="摘要:">
           <el-input v-model="postForm.content_short" :rows="1" type="textarea" class="article-textarea" autosize placeholder="Please enter the content" />
           <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
         </el-form-item>
 
-        <el-form-item label="视频选择:" prop="image_uri" style="margin-bottom: 30px;">
-          <Upload v-model="postForm.image_uri" />
+        <el-form-item label-width="60px" label="视频库选择:" class="postInfo-container-item">
+          <el-select v-model="postForm.videoId" :remote-method="getVideoList" filterable default-first-option remote placeholder="Search Video">
+            <el-option v-for="(item,index) in videoList" :key="item+index" :label="item.title" :value="item.id" />
+          </el-select>
         </el-form-item>
 
         <el-form-item prop="content" style="margin-bottom: 30px;">
@@ -78,7 +80,6 @@
 
 <script>
 import Tinymce from '@/components/Tinymce'
-import Upload from '@/components/Upload/UploadFile'
 import MDinput from '@/components/MDinput'
 import Sticky from '@/components/Sticky' // 粘性header组件
 import { validURL } from '@/utils/validate'
@@ -86,6 +87,7 @@ import { fetchArticle } from '@/api/article'
 import { searchUser } from '@/api/remote-search'
 import Warning from './Warning'
 import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
+import { searchList } from '@/api/video'
 
 const defaultForm = {
   status: 'draft',
@@ -94,6 +96,7 @@ const defaultForm = {
   content_short: '', // 文章摘要
   source_uri: '', // 文章外链
   image_uri: '', // 文章图片
+  videoId: '', // 视频id
   display_time: undefined, // 前台展示时间
   id: undefined,
   platforms: ['a-platform'],
@@ -103,7 +106,7 @@ const defaultForm = {
 
 export default {
   name: 'ArticleDetail',
-  components: { Tinymce, MDinput, Upload, Sticky, Warning, CommentDropdown, PlatformDropdown, SourceUrlDropdown },
+  components: { Tinymce, MDinput, Sticky, Warning, CommentDropdown, PlatformDropdown, SourceUrlDropdown },
   props: {
     isEdit: {
       type: Boolean,
@@ -141,6 +144,7 @@ export default {
       postForm: Object.assign({}, defaultForm),
       loading: false,
       userListOptions: [],
+      videoList: [],
       rules: {
         image_uri: [{ validator: validateRequire }],
         title: [{ validator: validateRequire }],
@@ -246,6 +250,15 @@ export default {
       searchUser(query).then(response => {
         if (!response.data.items) return
         this.userListOptions = response.data.items.map(v => v.name)
+      })
+    },
+    getVideoList(query) {
+      searchList(this.listQuery).then(response => {
+        if (response.code !== 0) {
+          return
+        }
+
+        this.videoList = response.data
       })
     }
   }
