@@ -213,7 +213,7 @@ export default {
       document.title = `${title} - ${this.postForm.id}`
     },
     submitForm() {
-      this.postForm.content = this.getHtml()
+      this.postForm.content = this.$refs.markdownEditor.getHtml()
       console.log(this.postForm)
       this.$refs.postForm.validate(valid => {
         if (valid) {
@@ -263,9 +263,6 @@ export default {
 
         this.videoList = response.data
       })
-    },
-    getHtml() {
-      return this.$refs.markdownEditor.getHtml()
     }
   }
 }
