@@ -39,3 +39,12 @@ export function updateArticle(data) {
     data
   })
 }
+
+export function save(query) {
+  return request({
+    url: 'article/save',
+    method: 'post',
+    baseURL: 'https://bit-admin.javalemon.com/',
+    data: query
+  })
+}
