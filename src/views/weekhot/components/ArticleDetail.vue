@@ -6,7 +6,7 @@
         <CommentDropdown v-model="postForm.comment_disabled" />
         <PlatformDropdown v-model="postForm.platforms" />
         <SourceUrlDropdown v-model="postForm.source_uri" />
-        <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
+        <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="getHtml">
           Publish
         </el-button>
         <el-button v-loading="loading" type="warning" @click="draftForm">
@@ -73,6 +73,10 @@
           <Tinymce ref="editor" v-model="postForm.content" :height="400" />
         </el-form-item>
 
+        <el-form-item prop="content" style="margin-bottom: 30px;">
+          <markdown-editor v-model="postForm.markdownContent" height="300px" />
+        </el-form-item>
+
       </div>
     </el-form>
   </div>
@@ -88,10 +92,12 @@ import { searchUser } from '@/api/remote-search'
 import Warning from './Warning'
 import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
 import { searchList } from '@/api/video'
+import MarkdownEditor from '@/components/MarkdownEditor'
 
 const defaultForm = {
   status: 'draft',
   title: '', // 文章题目
+  markdownContent: '', // 文章内容
   content: '', // 文章内容
   content_short: '', // 文章摘要
   source_uri: '', // 文章外链
@@ -106,7 +112,7 @@ const defaultForm = {
 
 export default {
   name: 'ArticleDetail',
-  components: { Tinymce, MDinput, Sticky, Warning, CommentDropdown, PlatformDropdown, SourceUrlDropdown },
+  components: { Tinymce, MDinput, MarkdownEditor, Sticky, Warning, CommentDropdown, PlatformDropdown, SourceUrlDropdown },
   props: {
     isEdit: {
       type: Boolean,
@@ -261,6 +267,12 @@ export default {
 
         this.videoList = response.data
       })
+    },
+    getHtml() {
+      const context = this.$refs.markdownEditor.getContext()
+      const html = this.$refs.markdownEditor.getHtml()
+      console.log(context)
+      console.log(html)
     }
   }
 }
