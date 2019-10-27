@@ -9,7 +9,7 @@
 
       <el-table-column width="180px" align="center" label="Date">
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.displayTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
 
@@ -25,19 +25,31 @@
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" label="Status" width="110">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
-        </template>
-      </el-table-column>
+      <!--<el-table-column class-name="status-col" label="Status" width="110">-->
+      <!--<template slot-scope="{row}">-->
+      <!--<el-tag :type="row.status | statusFilter">-->
+      <!--{{ row.status }}-->
+      <!--</el-tag>-->
+      <!--</template>-->
+      <!--</el-table-column>-->
 
       <el-table-column min-width="300px" label="Title">
         <template slot-scope="{row}">
           <router-link :to="'/example/edit/'+row.id" class="link-type">
             <span>{{ row.title }}</span>
           </router-link>
+        </template>
+      </el-table-column>
+
+      <el-table-column min-width="100px" label="Title">
+        <template slot-scope="{row}">
+          <span>{{ row.content }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column min-width="100px" label="Title">
+        <template slot-scope="{row}">
+          <span>{{ row.mdContent }}</span>
         </template>
       </el-table-column>
 
