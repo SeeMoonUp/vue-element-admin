@@ -3,9 +3,6 @@
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
 
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.status">
-        <CommentDropdown v-model="postForm.comment_disabled" />
-        <PlatformDropdown v-model="postForm.platforms" />
-        <SourceUrlDropdown v-model="postForm.source_uri" />
         <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
           Publish
         </el-button>
@@ -16,7 +13,6 @@
 
       <div class="createPost-main-container">
         <el-row>
-          <Warning />
 
           <el-col :span="24">
             <el-form-item style="margin-bottom: 40px;" prop="title">
@@ -53,24 +49,34 @@
                     />
                   </el-form-item>
                 </el-col>
+                <el-col :span="3">
+                  <el-form-item>
+                    <el-input-number v-model="postForm.viewNum" lable="观看次数" />
+                  </el-form-item>
+                </el-col>
+                <el-col :span="3">
+                  <el-form-item>
+                    <el-input-number v-model="postForm.likeNum" lable="喜欢次数" />
+                  </el-form-item>
+                </el-col>
               </el-row>
             </div>
           </el-col>
         </el-row>
 
         <el-form-item style="margin-bottom: 40px;" label-width="70px" label="摘要:">
-          <el-input v-model="postForm.content_short" :rows="1" type="textarea" class="article-textarea" autosize placeholder="Please enter the content" />
+          <el-input v-model="postForm.desc" :rows="1" type="textarea" class="article-textarea" autosize placeholder="Please enter the content" required />
           <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
         </el-form-item>
 
         <el-form-item label-width="100px" label="视频库选择:" class="postInfo-container-item">
-          <el-select v-model="postForm.videoId" :remote-method="getVideoList" filterable default-first-option remote placeholder="Search Video">
+          <el-select v-model="postForm.videoId" :remote-method="getVideoList" filterable default-first-option remote placeholder="Search Video" required>
             <el-option v-for="(item,index) in videoList" :key="item+index" :label="'['+item.id+']'+item.title" :value="item.id" />
           </el-select>
         </el-form-item>
 
         <el-form-item prop="content" style="margin-bottom: 30px;">
-          <markdown-editor ref="markdownEditor" v-model="postForm.mdContent" height="300px" />
+          <markdown-editor ref="markdownEditor" v-model="postForm.mdContent" height="300px" required />
         </el-form-item>
 
       </div>
@@ -84,8 +90,6 @@ import Sticky from '@/components/Sticky' // 粘性header组件
 import { validURL } from '@/utils/validate'
 import { fetchArticle } from '@/api/article'
 import { searchUser } from '@/api/remote-search'
-import Warning from './Warning'
-import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
 import { searchList } from '@/api/video'
 import MarkdownEditor from '@/components/MarkdownEditor'
 
@@ -94,20 +98,22 @@ const defaultForm = {
   title: '', // 文章题目
   mdContent: '', // 文章内容
   content: '', // 文章内容
-  content_short: '', // 文章摘要
+  desc: '', // 文章摘要
   source_uri: '', // 文章外链
   image_uri: '', // 文章图片
   videoId: '', // 视频id
-  display_time: undefined, // 前台展示时间
+  displayTime: undefined, // 前台展示时间
   id: undefined,
   platforms: ['a-platform'],
   comment_disabled: false,
-  importance: 0
+  importance: 0,
+  likeNum: 0,
+  viewNum: 0
 }
 
 export default {
   name: 'ArticleDetail',
-  components: { MDinput, MarkdownEditor, Sticky, Warning, CommentDropdown, PlatformDropdown, SourceUrlDropdown },
+  components: { MDinput, MarkdownEditor, Sticky },
   props: {
     isEdit: {
       type: Boolean,
@@ -157,7 +163,7 @@ export default {
   },
   computed: {
     contentShortLength() {
-      return this.postForm.content_short.length
+      return this.postForm.desc.length
     },
     displayTime: {
       // set and get is useful when the data
@@ -165,10 +171,10 @@ export default {
       // back end return => "2013-06-25 06:59:25"
       // front end need timestamp => 1372114765000
       get() {
-        return (+new Date(this.postForm.display_time))
+        return (+new Date(this.postForm.displayTime))
       },
       set(val) {
-        this.postForm.display_time = new Date(val)
+        this.postForm.displayTime = new Date(val)
       }
     }
   },
@@ -192,7 +198,7 @@ export default {
 
         // just for test
         this.postForm.title += `   Article Id:${this.postForm.id}`
-        this.postForm.content_short += `   Article Id:${this.postForm.id}`
+        this.postForm.desc += `   Article Id:${this.postForm.id}`
 
         // set tagsview title
         this.setTagsViewTitle()
