@@ -70,7 +70,7 @@
         </el-form-item>
 
         <el-form-item prop="content" style="margin-bottom: 30px;">
-          <markdown-editor v-model="postForm.mdContent" height="300px" />
+          <markdown-editor ref="markdownEditor" v-model="postForm.mdContent" height="300px" />
         </el-form-item>
 
       </div>
