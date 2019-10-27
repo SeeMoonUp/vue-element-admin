@@ -49,14 +49,14 @@
                     />
                   </el-form-item>
                 </el-col>
-                <el-col :span="3">
-                  <el-form-item>
-                    <el-input-number v-model="postForm.viewNum" lable="观看次数" />
+                <el-col :span="8">
+                  <el-form-item label="浏览数">
+                    <el-input-number v-model="postForm.viewNum" controls-position="right" :min="0" :max="10000" size="small" />
                   </el-form-item>
                 </el-col>
-                <el-col :span="3">
-                  <el-form-item>
-                    <el-input-number v-model="postForm.likeNum" lable="喜欢次数" />
+                <el-col :span="8">
+                  <el-form-item label="喜欢数">
+                    <el-input-number v-model="postForm.likeNum" controls-position="right" :min="0" :max="10000" size="small" />
                   </el-form-item>
                 </el-col>
               </el-row>
