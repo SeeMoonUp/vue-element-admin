@@ -28,7 +28,7 @@ export function searchList(query) {
   return request({
     url: 'video/searchList',
     method: 'post',
-    data: query,
+    data: { 'keyword': query },
     baseURL: 'https://bit-admin.javalemon.com/'
   })
 }
