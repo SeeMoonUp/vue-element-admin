@@ -21,6 +21,11 @@
               </MDinput>
             </el-form-item>
 
+            <el-form-item style="margin-bottom: 40px;" label-width="70px" label="摘要:">
+              <el-input v-model="postForm.desc" :rows="1" type="textarea" class="article-textarea" autosize placeholder="Please enter the content" required />
+              <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
+            </el-form-item>
+
             <div class="postInfo-container">
               <el-row>
                 <el-col :span="8">
@@ -50,12 +55,12 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="8">
-                  <el-form-item label="浏览数">
+                  <el-form-item label="浏览数:">
                     <el-input-number v-model="postForm.viewNum" controls-position="right" :min="0" :max="10000" size="small" />
                   </el-form-item>
                 </el-col>
                 <el-col :span="8">
-                  <el-form-item label="喜欢数">
+                  <el-form-item label="喜欢数:">
                     <el-input-number v-model="postForm.likeNum" controls-position="right" :min="0" :max="10000" size="small" />
                   </el-form-item>
                 </el-col>
@@ -63,11 +68,6 @@
             </div>
           </el-col>
         </el-row>
-
-        <el-form-item style="margin-bottom: 40px;" label-width="70px" label="摘要:">
-          <el-input v-model="postForm.desc" :rows="1" type="textarea" class="article-textarea" autosize placeholder="Please enter the content" required />
-          <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
-        </el-form-item>
 
         <el-form-item label-width="100px" label="视频库选择:" class="postInfo-container-item">
           <el-select v-model="postForm.videoId" :remote-method="getVideoList" filterable default-first-option remote placeholder="Search Video" required>
@@ -104,7 +104,6 @@ const defaultForm = {
   videoId: '', // 视频id
   displayTime: undefined, // 前台展示时间
   id: undefined,
-  platforms: ['a-platform'],
   comment_disabled: false,
   importance: 0,
   likeNum: 0,
