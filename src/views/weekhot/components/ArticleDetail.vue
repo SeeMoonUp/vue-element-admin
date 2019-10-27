@@ -65,7 +65,7 @@
 
         <el-form-item label-width="100px" label="视频库选择:" class="postInfo-container-item">
           <el-select v-model="postForm.videoId" :remote-method="getVideoList" filterable default-first-option remote placeholder="Search Video">
-            <el-option v-for="(item,index) in videoList" :key="item+index" :label="item.title" :value="item.id" />
+            <el-option v-for="(item,index) in videoList" :key="item+index" :label="'['+item.id+']'+item.title" :value="item.id" />
           </el-select>
         </el-form-item>
 
@@ -231,6 +231,7 @@ export default {
       })
     },
     draftForm() {
+      console.log(JSON.stringify(this.postForm))
       if (this.postForm.content.length === 0 || this.postForm.title.length === 0) {
         this.$message({
           message: '请填写必要的标题和内容',
