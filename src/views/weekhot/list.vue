@@ -49,11 +49,11 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100px" label="内容">
-        <template slot-scope="{row}">
-          <span>{{ row.mdContent }}</span>
-        </template>
-      </el-table-column>
+      <!--<el-table-column min-width="100px" label="内容">-->
+      <!--<template slot-scope="{row}">-->
+      <!--<span>{{ row.mdContent }}</span>-->
+      <!--</template>-->
+      <!--</el-table-column>-->
 
       <el-table-column width="180px" align="center" label="展示时间">
         <template slot-scope="scope">
