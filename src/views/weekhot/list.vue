@@ -13,11 +13,11 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" label="Importance">
-        <template slot-scope="scope">
-          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon" />
-        </template>
-      </el-table-column>
+      <!--<el-table-column width="100px" label="Importance">-->
+      <!--<template slot-scope="scope">-->
+      <!--<svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon" />-->
+      <!--</template>-->
+      <!--</el-table-column>-->
 
       <!--<el-table-column class-name="status-col" label="Status" width="110">-->
       <!--<template slot-scope="{row}">-->
