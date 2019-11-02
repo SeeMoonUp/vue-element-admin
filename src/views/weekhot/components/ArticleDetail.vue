@@ -21,20 +21,13 @@
               </MDinput>
             </el-form-item>
 
-            <el-form-item style="margin-bottom: 40px;" label-width="70px" label="摘要:">
+            <el-form-item style="margin-bottom: 40px;" label="摘要:">
               <el-input v-model="postForm.desc" :rows="1" type="textarea" class="article-textarea" autosize placeholder="Please enter the content" required />
               <span v-show="contentShortLength" class="word-counter">{{ contentShortLength }}words</span>
             </el-form-item>
 
             <div class="postInfo-container">
               <el-row>
-                <el-col :span="8">
-                  <el-form-item label-width="60px" label="作者:" class="postInfo-container-item">
-                    <el-select v-model="postForm.author" :remote-method="getRemoteUserList" filterable default-first-option remote placeholder="Search user">
-                      <el-option v-for="(item,index) in userListOptions" :key="item+index" :label="item" :value="item" />
-                    </el-select>
-                  </el-form-item>
-                </el-col>
 
                 <el-col :span="10">
                   <el-form-item label-width="120px" label="发布时间:" class="postInfo-container-item">
@@ -42,18 +35,6 @@
                   </el-form-item>
                 </el-col>
 
-                <el-col :span="6">
-                  <el-form-item label-width="90px" label="星级:" class="postInfo-container-item">
-                    <el-rate
-                      v-model="postForm.importance"
-                      :max="3"
-                      :colors="['#99A9BF', '#F7BA2A', '#FF9900']"
-                      :low-threshold="1"
-                      :high-threshold="3"
-                      style="display:inline-block"
-                    />
-                  </el-form-item>
-                </el-col>
                 <el-col :span="8">
                   <el-form-item label="浏览数:">
                     <el-input-number v-model="postForm.viewNum" controls-position="right" :min="0" :max="10000" size="small" />
@@ -209,12 +190,12 @@ export default {
       })
     },
     setTagsViewTitle() {
-      const title = 'Edit Article'
+      const title = '编辑精选'
       const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.id}` })
       this.$store.dispatch('tagsView/updateVisitedView', route)
     },
     setPageTitle() {
-      const title = 'Edit Article'
+      const title = '编辑精选'
       document.title = `${title} - ${this.postForm.id}`
     },
     submitForm() {
