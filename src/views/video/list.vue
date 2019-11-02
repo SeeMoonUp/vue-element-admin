@@ -9,9 +9,9 @@
 
       <el-table-column min-width="300" label="Title">
         <template slot-scope="{row}">
-          <router-link :to="'/example/edit/'+row.id" class="link-type">
-            <span>{{ row.title }}</span>
-          </router-link>
+          <!--<router-link :to="'/example/edit/'+row.id" class="link-type">-->
+          <span>{{ row.title }}</span>
+          <!--</router-link>-->
         </template>
       </el-table-column>
 
@@ -48,11 +48,11 @@
               观看
             </el-button>
           </a>
-          <router-link :to="'/example/edit/'+scope.row.id">
-            <el-button type="primary" size="small" icon="el-icon-edit">
-              编辑
-            </el-button>
-          </router-link>
+          <!--<router-link :to="'/example/edit/'+scope.row.id">-->
+          <!--<el-button type="primary" size="small" icon="el-icon-edit">-->
+          <!--编辑-->
+          <!--</el-button>-->
+          <!--</router-link>-->
         </template>
       </el-table-column>
     </el-table>
