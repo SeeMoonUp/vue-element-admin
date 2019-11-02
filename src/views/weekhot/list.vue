@@ -7,15 +7,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="Date">
+      <el-table-column width="120px" align="center" label="视频id">
         <template slot-scope="scope">
-          <span>{{ scope.row.displayTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="120px" align="center" label="Author">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>{{ scope.row.videoId }}</span>
         </template>
       </el-table-column>
 
@@ -33,7 +27,7 @@
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column min-width="300px" label="Title">
+      <el-table-column min-width="300px" label="标题">
         <template slot-scope="{row}">
           <router-link :to="'/example/edit/'+row.id" class="link-type">
             <span>{{ row.title }}</span>
@@ -41,15 +35,28 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100px" label="Title">
+      <el-table-column min-width="100px" label="副标题">
         <template slot-scope="{row}">
-          <span>{{ row.content }}</span>
+          <span>{{ row.desc }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100px" label="Title">
+      <el-table-column min-width="100px" label="数据">
+        <template slot-scope="{row}">
+          <span>浏览数：{{ row.viewNum }}</span>
+          <span>喜欢数：{{ row.likeNum }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column min-width="100px" label="内容">
         <template slot-scope="{row}">
           <span>{{ row.mdContent }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="180px" align="center" label="展示时间">
+        <template slot-scope="scope">
+          <span>{{ scope.row.displayTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
 
