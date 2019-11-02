@@ -29,18 +29,18 @@
             <div class="postInfo-container">
               <el-row>
 
-                <el-col :span="10">
-                  <el-form-item label-width="120px" label="发布时间:" class="postInfo-container-item">
+                <el-col :span="8">
+                  <el-form-item label="发布时间:" class="postInfo-container-item">
                     <el-date-picker v-model="displayTime" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="Select date and time" />
                   </el-form-item>
                 </el-col>
 
-                <el-col :span="8">
+                <el-col :span="6">
                   <el-form-item label="浏览数:">
                     <el-input-number v-model="postForm.viewNum" controls-position="right" :min="0" :max="10000" size="small" />
                   </el-form-item>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="6">
                   <el-form-item label="喜欢数:">
                     <el-input-number v-model="postForm.likeNum" controls-position="right" :min="0" :max="10000" size="small" />
                   </el-form-item>
@@ -50,7 +50,7 @@
           </el-col>
         </el-row>
 
-        <el-form-item label-width="100px" label="视频库选择:" class="postInfo-container-item">
+        <el-form-item label="视频库选择:" class="postInfo-container-item">
           <el-select v-model="postForm.videoId" :remote-method="getVideoList" filterable default-first-option remote placeholder="Search Video" required>
             <el-option v-for="(item,index) in videoList" :key="item+index" :label="'['+item.id+']'+item.title" :value="item.id" />
           </el-select>
