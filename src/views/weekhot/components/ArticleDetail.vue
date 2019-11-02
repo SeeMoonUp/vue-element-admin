@@ -6,9 +6,9 @@
         <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
           Publish
         </el-button>
-        <el-button v-loading="loading" type="warning" @click="draftForm">
-          Draft
-        </el-button>
+        <!--<el-button v-loading="loading" type="warning" @click="draftForm">-->
+        <!--Draft-->
+        <!--</el-button>-->
       </sticky>
 
       <div class="createPost-main-container">
