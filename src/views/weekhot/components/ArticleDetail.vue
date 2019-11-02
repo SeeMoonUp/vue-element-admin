@@ -29,7 +29,7 @@
             <div class="postInfo-container">
               <el-row>
 
-                <el-col :span="8">
+                <el-col :span="9">
                   <el-form-item label="发布时间:" class="postInfo-container-item">
                     <el-date-picker v-model="displayTime" type="datetime" format="yyyy-MM-dd HH:mm:ss" placeholder="Select date and time" />
                   </el-form-item>

@@ -44,6 +44,7 @@
       <el-table-column min-width="100px" label="数据">
         <template slot-scope="{row}">
           <span>浏览数：{{ row.viewNum }}</span>
+          <br>
           <span>喜欢数：{{ row.likeNum }}</span>
         </template>
       </el-table-column>
