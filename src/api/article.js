@@ -4,7 +4,7 @@ export function fetchList() {
   return request({
     url: '/article/list',
     method: 'post',
-    baseURL: 'https://bit-admin.javalemon.com/'
+    baseURL: 'http://admin.bitxueyuan.com/'
   })
 }
 
@@ -27,7 +27,7 @@ export function save(query) {
   return request({
     url: 'article/save',
     method: 'post',
-    baseURL: 'https://bit-admin.javalemon.com/',
+    baseURL: 'http://admin.bitxueyuan.com/',
     data: query
   })
 }

@@ -4,7 +4,7 @@ export function save(query) {
   return request({
     url: 'video/save',
     method: 'post',
-    baseURL: 'https://bit-admin.javalemon.com/',
+    baseURL: 'http://admin.bitxueyuan.com/',
     data: query
   })
 }
@@ -12,7 +12,7 @@ export function list() {
   return request({
     url: 'video/list',
     method: 'post',
-    baseURL: 'https://bit-admin.javalemon.com/'
+    baseURL: 'http://admin.bitxueyuan.com/'
   })
 }
 
@@ -20,7 +20,7 @@ export function fetchList(query) {
   return request({
     url: 'video/list',
     method: 'post',
-    baseURL: 'https://bit-admin.javalemon.com/'
+    baseURL: 'http://admin.bitxueyuan.com/'
   })
 }
 
@@ -29,6 +29,6 @@ export function searchList(query) {
     url: 'video/searchList',
     method: 'post',
     data: { 'keyword': query },
-    baseURL: 'https://bit-admin.javalemon.com/'
+    baseURL: 'http://admin.bitxueyuan.com/'
   })
 }
