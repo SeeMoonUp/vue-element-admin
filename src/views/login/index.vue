@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">比特位 后管系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -50,11 +50,11 @@
       <div style="position:relative">
         <div class="tips">
           <span>Username : admin</span>
-          <span>Password : any</span>
+          <span>Password : ***</span>
         </div>
         <div class="tips">
           <span style="margin-right:18px;">Username : editor</span>
-          <span>Password : any</span>
+          <span>Password : ***</span>
         </div>
 
         <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
@@ -89,7 +89,9 @@ export default {
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
+      if (value !== 'bitedu') {
+        callback(new Error('The password error'))
+      } else if (value.length < 6) {
         callback(new Error('The password can not be less than 6 digits'))
       } else {
         callback()
