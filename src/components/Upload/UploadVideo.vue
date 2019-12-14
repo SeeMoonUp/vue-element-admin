@@ -67,7 +67,6 @@ export default {
           console.log('token' + token)
           _self._data.dataObj.token = token
           _self._data.dataObj.key = key
-          this.success = true
           resolve(true)
         }).catch(err => {
           console.log(err)
@@ -78,6 +77,7 @@ export default {
     uploadSuccess(response, file, fileList) {
       const _self = this
       this.tempUrl = _self._data.dataObj.key
+      this.success = true
       console.log(_self)
       this.$message({
         message: '文件上传成功',
