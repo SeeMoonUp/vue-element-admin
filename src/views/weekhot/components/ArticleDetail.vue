@@ -50,6 +50,10 @@
           </el-col>
         </el-row>
 
+        <el-form-item label="封面选择:" prop="image_uri" style="margin-bottom: 30px;">
+          <Upload ref="upload" v-model="postForm.image" />
+        </el-form-item>
+
         <el-form-item label-width="120px" label="视频库选择:" class="postInfo-container-item">
           <el-select v-model="postForm.videoId" :remote-method="getVideoList" filterable default-first-option remote placeholder="Search Video" required>
             <el-option v-for="(item,index) in videoList" :key="item+index" :label="'['+item.id+']'+item.title" :value="item.id" />
@@ -73,6 +77,7 @@ import { fetchArticle, save } from '@/api/article'
 import { searchUser } from '@/api/remote-search'
 import { searchList } from '@/api/video'
 import MarkdownEditor from '@/components/MarkdownEditor'
+import Upload from '@/components/Upload/UploadImg'
 
 const defaultForm = {
   status: 'draft',
@@ -81,7 +86,7 @@ const defaultForm = {
   content: '', // 文章内容
   desc: '', // 文章摘要
   source_uri: '', // 文章外链
-  image_uri: '', // 文章图片
+  image: '', // 文章图片
   videoId: '', // 视频id
   displayTime: undefined, // 前台展示时间
   id: undefined,
@@ -93,7 +98,7 @@ const defaultForm = {
 
 export default {
   name: 'ArticleDetail',
-  components: { MDinput, MarkdownEditor, Sticky },
+  components: { MDinput, MarkdownEditor, Sticky, Upload },
   props: {
     isEdit: {
       type: Boolean,

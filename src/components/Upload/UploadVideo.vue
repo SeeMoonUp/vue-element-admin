@@ -39,10 +39,23 @@ export default {
     handleExceed(files, fileList) {
       this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
     },
-    beforeUpload() {
+    beforeUpload(file) {
       console.log('上传之前')
       console.log(getToken())
       console.log(getToken().data)
+
+      const isMP4 = file.type === 'video/mp4'
+      const isLt2M = file.size / 1024 / 1024 < 500
+
+      if (!isMP4) {
+        this.$message.error('上传视频只能是 MP4 格式!')
+        return false
+      }
+      if (!isLt2M) {
+        this.$message.error('上传视频大小不能超过 500MB!')
+        return false
+      }
+
       const _self = this
       return new Promise((resolve, reject) => {
         getToken().then(response => {
@@ -54,7 +67,6 @@ export default {
           console.log('token' + token)
           _self._data.dataObj.token = token
           _self._data.dataObj.key = key
-          this.tempUrl = key
           this.success = true
           resolve(true)
         }).catch(err => {
@@ -65,6 +77,7 @@ export default {
     },
     uploadSuccess(response, file, fileList) {
       const _self = this
+      this.tempUrl = _self._data.dataObj.key
       console.log(_self)
       this.$message({
         message: '文件上传成功',
