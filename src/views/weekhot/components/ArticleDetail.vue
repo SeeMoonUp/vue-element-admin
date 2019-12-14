@@ -86,7 +86,7 @@ const defaultForm = {
   content: '', // 文章内容
   desc: '', // 文章摘要
   source_uri: '', // 文章外链
-  image: '', // 文章图片
+  videoImg: '', // 文章图片
   videoId: '', // 视频id
   displayTime: undefined, // 前台展示时间
   id: undefined,
@@ -205,6 +205,16 @@ export default {
     },
     submitForm() {
       this.postForm.content = this.$refs.markdownEditor.getHtml()
+      if (typeof this.$refs.upload.tempUrl !== 'undefined' && this.$refs.upload.tempUrl !== '') {
+        this.postForm.videoImg = this.$refs.upload.tempUrl
+      }
+      if (typeof this.postForm.videoImg === 'undefined' || this.postForm.videoImg === '') {
+        this.$message({
+          message: '请上传视频封面图片',
+          type: 'warning'
+        })
+        return false
+      }
       console.log(this.postForm)
       this.$refs.postForm.validate(valid => {
         if (valid) {

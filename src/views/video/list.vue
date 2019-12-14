@@ -43,7 +43,7 @@
 
       <el-table-column align="center" label="Actions">
         <template slot-scope="scope">
-          <a :href="'http://img.bitxueyuan.com/'+scope.row.qiniuKey" target="_blank">
+          <a :href="'http://video.bitxueyuan.com/'+scope.row.qiniuKey" target="_blank">
             <el-button type="primary" size="small" icon="el-icon-view">
               观看
             </el-button>
